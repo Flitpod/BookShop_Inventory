@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace OWT6BA_HFT_2022232.Models
 {
-    public class Author
+    public class Category
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AuthorId { get; set; }
+        public int CategoryId { get; set; }
 
         [StringLength(240)]
-        string AuthorName { get; set; }
+        public string CategoryName { get; set; }
     }
 }
