@@ -8,10 +8,10 @@ namespace OWT6BA_HFT_2022232.Repository.Interface
 {
     public interface IRepository<T>  where T : class
     {
-        public void Create(T item);
-        public T Read(int id);
-        public IQueryable<T> ReadAll();
-        public void Update(T item);
-        public void Delete(int id);
+        void Create(T item);
+        T Read(int id);
+        IQueryable<T> ReadAll();
+        void Update(T item);
+        void Delete(int id);
     }
 }
