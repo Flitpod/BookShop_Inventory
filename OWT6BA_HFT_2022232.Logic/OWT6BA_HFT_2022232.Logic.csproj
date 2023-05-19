@@ -9,4 +9,8 @@
     <ProjectReference Include="..\OWT6BA_HFT_2022232.Repository\OWT6BA_HFT_2022232.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+
 </Project>
