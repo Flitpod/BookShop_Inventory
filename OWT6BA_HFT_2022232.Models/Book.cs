@@ -23,6 +23,8 @@ namespace OWT6BA_HFT_2022232.Models
 
         public int Pages { get; set; }
 
+        public double Price { get; set; }
+
         public double Rating { get; set; }
         
         public int NumberOfReviews { get; set; }
@@ -53,10 +55,11 @@ namespace OWT6BA_HFT_2022232.Models
             this.Title = temp[1];
             this.ReleaseYear = int.Parse(temp[2]);
             this.Pages = int.Parse(temp[3]);
-            this.Rating = double.Parse(temp[4]);
-            this.NumberOfReviews = int.Parse(temp[5]);
-            this.AuthorId = int.Parse(temp[6]);
-            this.CaregoryId = int.Parse(temp[7]);
+            this.Price = double.Parse(temp[4].Replace('.', ','));
+            this.Rating = double.Parse(temp[5].Replace('.',','));
+            this.NumberOfReviews = int.Parse(temp[6]);
+            this.AuthorId = int.Parse(temp[7]);
+            this.CaregoryId = int.Parse(temp[8]);
         }
     }
 }

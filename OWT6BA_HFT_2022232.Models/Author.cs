@@ -17,7 +17,7 @@ namespace OWT6BA_HFT_2022232.Models
         public int AuthorId { get; set; }
 
         [StringLength(240)]
-        string AuthorName { get; set; }
+        public string AuthorName { get; set; }
 
         // Navigation Property for LazyLoading
         [JsonIgnore]

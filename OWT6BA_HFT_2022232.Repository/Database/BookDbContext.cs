@@ -11,8 +11,8 @@ namespace OWT6BA_HFT_2022232.Repository.Database
     public class BookDbContext : DbContext
     {
         // members - tables
-        public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         // ctor
@@ -35,15 +35,6 @@ namespace OWT6BA_HFT_2022232.Repository.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // define the connections between the tables using LazyLodaing
-            modelBuilder.Entity<Book>(entity =>
-            {
-                entity
-                .HasOne(book => book.Author)
-                .WithMany(author => author.Books)
-                .HasForeignKey(book => book.AuthorId)
-                .OnDelete(DeleteBehavior.Cascade);
-            });
-
             modelBuilder.Entity<Book>(enitiy =>
             {
                 enitiy
@@ -53,27 +44,18 @@ namespace OWT6BA_HFT_2022232.Repository.Database
                 .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<Book>(entity =>
+            {
+                entity
+                .HasOne(book => book.Author)
+                .WithMany(author => author.Books)
+                .HasForeignKey(book => book.AuthorId)
+                .OnDelete(DeleteBehavior.Cascade);
+            });
 
             // Db seeds
             // source: https://www.kaggle.com/datasets/preethievelyn/amazon-top-100-bestsellers-in-books?select=Amazon_Bestseller_books.csv
             // Filtered dataset examples
-
-            // categories seeds
-            var categories = new List<Category>()
-            {
-                new Category("1*Action & Adventure"),
-                new Category("2*Film & Photography"),
-                new Category("3*Internet & Digital Media"),
-                new Category("4*Health"),
-                new Category("5*Historical Fiction"),
-                new Category("6*History"),
-                new Category("7*Literature & Fiction"),
-                new Category("8*Maps & Atlases"),
-                new Category("9*Politics"),
-                new Category("10*Romance"),
-                new Category("11*Society & Social Sciences"),
-                new Category("12*Travel"),
-            };
 
             // authors seeds
             var authors = new List<Author>()
@@ -98,6 +80,23 @@ namespace OWT6BA_HFT_2022232.Repository.Database
                 new Author("18*Tim Marshall"),
             };
 
+            // categories seeds
+            var categories = new List<Category>()
+            {
+                new Category("1*Action & Adventure"),
+                new Category("2*Film & Photography"),
+                new Category("3*Internet & Digital Media"),
+                new Category("4*Health"),
+                new Category("5*Historical Fiction"),
+                new Category("6*History"),
+                new Category("7*Literature & Fiction"),
+                new Category("8*Maps & Atlases"),
+                new Category("9*Politics"),
+                new Category("10*Romance"),
+                new Category("11*Society & Social Sciences"),
+                new Category("12*Travel"),
+            };
+
             // books seeds
             var books = new List<Book>()
             {
@@ -117,25 +116,26 @@ namespace OWT6BA_HFT_2022232.Repository.Database
                 new Book("12*Harry Potter and the Chamber of Secrets*1998*251*299*4.7*31243*12*1"),
                 new Book("13*Harry Potter and the Philosopher's Stone*1997*223*285.95*4.7*38252*12*7"),
                 new Book("14*Harry Potter and the Prisoner of Azkaban*1999*317*158.65*4.7*24040*12*1"),
-                new Book("15*How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need*2021*272749*4.6*7474*4*3"),
+                new Book("15*How to Avoid a Climate Disaster: The Solutions We Have and the Breakthroughs We Need*2021*272*749*4.6*7474*4*3"),
                 new Book("16*Intensity: A powerful thriller of violence and terror*1996*480*324.33*4.4*1853*8*12"),
                 new Book("17*Long Walk To Freedom*1994*630*456*4.6*3821*14*9"),
-                new Book("18*Prisoners of Geography: Ten Maps That Tell You Everything You Need To Know About Global Politics*2015*320*479*4.6*6854*18*9"),
-                new Book("19*Rich Dad Poor Dad*1997*336*291*4.5*3351*16*4"),
-                new Book("20*She Has Her Mother's Laugh: The Powers, Perversions, and Potential of Heredity*2018*672*133.95*4.6*421*5*4"),
-                new Book("21*The Origin of Species*1859*502*159*4.5*5414*6*6"),
-                new Book("22*The Picture of Dorian Gray*1890*272*259*4.6*5763*15*7"),
-                new Book("23*The Power of Geography: Ten Maps that Reveal the Future of Our World – the sequel to Prisoners of Geography*2021*380*381.99*4.6*1272*18*8"),
-                new Book("24*The Tales of Beedle the Bard: A Harry Potter Hogwarts Library Book*2008*128*199*4.6*7692*12*11"),
-                new Book("25*The Viscount Who Loved Me: Bridgerton*2000*354*257.34*4.5*24030*13*10"),
-                new Book("26*Think Again: The Power of Knowing What You Don't Know*2021*320*505*4.6*6762*1*11"),
-                new Book("27*When He Was Wicked: Bridgerton*2004*368*257.34*4.6*12991*13*5"),
+                new Book("18*Metamorphosis*1915*217*79*4.5*6279*9*7"),
+                new Book("19*Prisoners of Geography: Ten Maps That Tell You Everything You Need To Know About Global Politics*2015*320*479*4.6*6854*18*9"),
+                new Book("20*Rich Dad Poor Dad*1997*336*291*4.5*3351*16*4"),
+                new Book("21*She Has Her Mother's Laugh: The Powers, Perversions, and Potential of Heredity*2018*672*133.95*4.6*421*5*4"),
+                new Book("22*The Origin of Species*1859*502*159*4.5*5414*6*6"),
+                new Book("23*The Picture of Dorian Gray*1890*272*259*4.6*5763*15*7"),
+                new Book("24*The Power of Geography: Ten Maps that Reveal the Future of Our World – the sequel to Prisoners of Geography*2021*380*381.99*4.6*1272*18*8"),
+                new Book("25*The Tales of Beedle the Bard: A Harry Potter Hogwarts Library Book*2008*128*199*4.6*7692*12*11"),
+                new Book("26*The Viscount Who Loved Me: Bridgerton*2000*354*257.34*4.5*24030*13*10"),
+                new Book("27*Think Again: The Power of Knowing What You Don't Know*2021*320*505*4.6*6762*1*11"),
+                new Book("28*When He Was Wicked: Bridgerton*2004*368*257.34*4.6*12991*13*5"),
             };
 
             // adding DbSeeds to the database
             modelBuilder.Entity<Author>().HasData(authors);
-            modelBuilder.Entity<Category>().HasData(categories);
             modelBuilder.Entity<Book>().HasData(books);
+            modelBuilder.Entity<Category>().HasData(categories);
         }
     }
 }
