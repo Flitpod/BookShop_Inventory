@@ -11,7 +11,6 @@
   <ItemGroup>
     <Folder Include="GenericRepository\" />
     <Folder Include="ModelRepositories\" />
-    <Folder Include="Interface\" />
   </ItemGroup>
 
   <ItemGroup>
