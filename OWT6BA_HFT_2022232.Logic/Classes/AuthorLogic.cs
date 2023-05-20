@@ -63,6 +63,10 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
 
         // NON-CRUD methods
+        /// <summary>
+        /// Gives back AuthorStatistics object containing Authorname, Average - NumberOfPages/book, Average Price/book, Average Rating/book
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<AuthorStatistics> GetStatistics()
         {
             return (from a in this.repository.ReadAll()
@@ -77,6 +81,11 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
                     }).AsEnumerable();
         }
 
+        /// <summary>
+        /// Gives back the category names of the chosen author (by id) in ascending order without recurrence
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<string> CategoriesOfAuthor(int id)
         {
             return (from b in this.repository.Read(id).Books

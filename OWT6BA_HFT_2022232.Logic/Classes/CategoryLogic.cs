@@ -1,4 +1,6 @@
-﻿using OWT6BA_HFT_2022232.Models;
+﻿using OWT6BA_HFT_2022232.Logic.Interfaces;
+using OWT6BA_HFT_2022232.Models;
+using OWT6BA_HFT_2022232.Models.DTO;
 using OWT6BA_HFT_2022232.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OWT6BA_HFT_2022232.Logic.Classes
 {
-    public class CategoryLogic
+    public class CategoryLogic:ICategoryLogic
     {
         // members
         IRepository<Category> repository;
@@ -55,6 +57,13 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         public void Update(Category item)
         {
             this.repository.Update(item);
+        }
+
+
+        // NON-CRUD method
+        public IEnumerable<CategoryStatistics> GetStatisticsFromStartYear(int startYear)
+        {
+            throw new NotImplementedException();
         }
     }
 }

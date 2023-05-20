@@ -1,4 +1,5 @@
-﻿using OWT6BA_HFT_2022232.Models;
+﻿using OWT6BA_HFT_2022232.Logic.Interfaces;
+using OWT6BA_HFT_2022232.Models;
 using OWT6BA_HFT_2022232.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OWT6BA_HFT_2022232.Logic.Classes
 {
-    public class BookLogic
+    public class BookLogic : IBookLogic
     {
         // members
         IRepository<Book> repository;
