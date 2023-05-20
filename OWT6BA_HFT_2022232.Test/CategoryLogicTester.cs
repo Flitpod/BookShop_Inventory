@@ -39,12 +39,14 @@ namespace OWT6BA_HFT_2022232.Test
             var categories = new List<Category>() { c1, c2 }.AsQueryable();
 
             // mockRepository Setup
-            mockCategoryRepo.Setup(ar => ar.ReadAll()).Returns(categories);
+            mockCategoryRepo.Setup(cr => cr.ReadAll()).Returns(categories);
 
             // CategoryLogic instancing
             this.categoryLogic = new CategoryLogic(mockCategoryRepo.Object);
         }
 
+
+        // NON-CRUD test
         [Test]
         public void CategoryLogic_GetStatisticsFromStartYear_Test()
         {

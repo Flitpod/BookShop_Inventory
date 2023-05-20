@@ -1,5 +1,6 @@
 ﻿using OWT6BA_HFT_2022232.Logic.Interfaces;
 using OWT6BA_HFT_2022232.Models;
+using OWT6BA_HFT_2022232.Models.DTO;
 using OWT6BA_HFT_2022232.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         {
             this.repository = repository;
         }
+
 
         // CRUD methods
         public void Create(Book item)
@@ -56,6 +58,29 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         public void Update(Book item)
         {
             this.repository.Update(item);
+        }
+
+
+        // NON-CRUD methods
+        /// <summary>
+        /// Give back the all book from the given year order by categories and then order by ratings in a category subgroup
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IEnumerable<Book> BooksFromYear(int year)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Give back BookYearStatistics objects containing the year, NumberOfBooks, NumberOfCategories, NumberOfAuthors in the same year, if the actual year contains minimum 1 book
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IEnumerable<BookYearStatistics> GetStatisticsByYears()
+        {
+            throw new NotImplementedException();
         }
     }
 }

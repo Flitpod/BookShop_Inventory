@@ -61,6 +61,11 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
 
         // NON-CRUD method
+        /// <summary>
+        /// Gives back the category statistics in CategoryStatistics objects from a given StartYear
+        /// </summary>
+        /// <param name="startYear"></param>
+        /// <returns></returns>
         public IEnumerable<CategoryStatistics> GetStatisticsFromStartYear(int startYear)
         {
             return (from c in this.repository.ReadAll()

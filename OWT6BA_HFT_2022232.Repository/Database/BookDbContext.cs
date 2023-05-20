@@ -40,7 +40,7 @@ namespace OWT6BA_HFT_2022232.Repository.Database
                 enitiy
                 .HasOne(book => book.Category)
                 .WithMany(category => category.Books)
-                .HasForeignKey(book => book.CaregoryId)
+                .HasForeignKey(book => book.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
             });
 

@@ -52,6 +52,8 @@ namespace OWT6BA_HFT_2022232.Test
             this.authorLogic = new AuthorLogic(mockAuthorRepo.Object);
         }
 
+
+        // NON-CRUD test
         [Test]
         public void AuthorLogic_GetStatistics_Test()
         {

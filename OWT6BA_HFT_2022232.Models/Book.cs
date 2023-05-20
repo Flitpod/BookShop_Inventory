@@ -33,7 +33,7 @@ namespace OWT6BA_HFT_2022232.Models
         public int AuthorId { get; set; }
 
         [ForeignKey(nameof(Category))]
-        public int CaregoryId { get; set; }
+        public int CategoryId { get; set; }
 
 
         // Navigation Properties for LazyLoading
@@ -59,7 +59,28 @@ namespace OWT6BA_HFT_2022232.Models
             this.Rating = double.Parse(temp[5].Replace('.',','));
             this.NumberOfReviews = int.Parse(temp[6]);
             this.AuthorId = int.Parse(temp[7]);
-            this.CaregoryId = int.Parse(temp[8]);
+            this.CategoryId = int.Parse(temp[8]);
+        }
+
+        // overrides for Tests
+        public override bool Equals(object obj)
+        {
+            Book a = this;
+            Book b = obj as Book;
+            return  a.BookId == b.BookId &&
+                    a.Title == b.Title &&
+                    a.ReleaseYear == b.ReleaseYear &&
+                    a.Pages == b.Pages &&
+                    a.Price == b.Price &&
+                    a.Rating == b.Rating &&
+                    a.NumberOfReviews == b.NumberOfReviews &&
+                    a.AuthorId == b.AuthorId &&
+                    a.CategoryId == b.CategoryId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(BookId, Title, ReleaseYear, Price, Rating, NumberOfReviews, AuthorId, CategoryId);
         }
     }
 }
