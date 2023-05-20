@@ -5,6 +5,7 @@ using OWT6BA_HFT_2022232.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,7 +71,11 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable<Book> BooksFromYear(int year)
         {
-            throw new NotImplementedException();
+            return (this.repository.ReadAll()
+                    .Where(b => b.ReleaseYear == year)
+                    .OrderBy(b => b.Category.CategoryName)
+                    .ThenByDescending(b => b.Rating))
+                    .AsEnumerable();
         }
 
         /// <summary>
@@ -80,7 +85,15 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable<BookYearStatistics> GetStatisticsByYears()
         {
-            throw new NotImplementedException();
+            return (from b in this.repository.ReadAll()
+                    group b by b.ReleaseYear into g
+                    select new BookYearStatistics()
+                    {
+                        Year = g.Key,
+                        NumberOfBooks = g.Count(),
+                        NumberOfAuthors = g.GroupBy(b => b.Author.AuthorId).Count(),
+                        NumberOfCategories = g.GroupBy(b => b.Category.CategoryId).Count(),
+                    }).AsEnumerable();                             
         }
     }
 }

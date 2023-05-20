@@ -88,8 +88,8 @@ namespace OWT6BA_HFT_2022232.Test
             };
 
             // act 
-            var actual = this.bookLogic.GetStatisticsByYears();
-
+            var actual = this.bookLogic.GetStatisticsByYears().ToArray();
+            
             // assert
             Assert.AreEqual(expected, actual);
         }
