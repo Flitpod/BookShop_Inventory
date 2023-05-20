@@ -63,7 +63,17 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         // NON-CRUD method
         public IEnumerable<CategoryStatistics> GetStatisticsFromStartYear(int startYear)
         {
-            throw new NotImplementedException();
+            return (from c in this.repository.ReadAll()
+                    from b in c.Books
+                    where b.ReleaseYear >= startYear
+                    group b by c.CategoryName into g
+                    select new CategoryStatistics()
+                    {
+                        CategoryName = g.Key,
+                        NumberOfBooks = g.Count(),
+                        AvgRating = g.Average(b => b.Rating),
+                        SumNumberOfReviews = g.Sum(b => b.NumberOfReviews),
+                    }).AsEnumerable();
         }
     }
 }
