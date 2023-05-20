@@ -39,13 +39,14 @@ namespace OWT6BA_HFT_2022232.Test
             Book b7 = new Book() { BookId = 7, Pages = 700, Price = 70, Rating = 4.7, Category = c1 };
             Book b8 = new Book() { BookId = 8, Pages = 800, Price = 80, Rating = 4.8, Category = c3 };
   
-            Author a1 = new Author() { AuthorId = 1, AuthorName = "A", Books = { b1, b2, b3, b4 } }; // categories c1, c2, c2, c3 (a,b,b,c)
-            Author a2 = new Author() { AuthorId = 2, AuthorName = "B", Books = { b5, b6, b7, b8 } }; // categories c3, c3, c1, c3 (c,c,a,c)
+            Author a1 = new Author() { AuthorId = 1, AuthorName = "A", Books = new List<Book>() { b1, b2, b3, b4 } }; // categories c1, c2, c2, c3 (a,b,b,c)
+            Author a2 = new Author() { AuthorId = 2, AuthorName = "B", Books = new List<Book>() { b5, b6, b7, b8 } }; // categories c3, c3, c1, c3 (c,c,a,c)
 
             var authors = new List<Author>() { a1, a2 }.AsQueryable();
 
             // mockRepository Setup
             mockAuthorRepo.Setup(ar => ar.ReadAll()).Returns(authors);
+            mockAuthorRepo.Setup(ar => ar.Read(It.Is<int>(id => id==1))).Returns(a1);
 
             // AuthorLogic instancing
             this.authorLogic = new AuthorLogic(mockAuthorRepo.Object);

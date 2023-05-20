@@ -65,12 +65,25 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         // NON-CRUD methods
         public IEnumerable<AuthorStatistics> GetStatistics()
         {
-            throw new NotImplementedException();
+            return (from a in this.repository.ReadAll()
+                    from b in a.Books
+                    group b by a.AuthorName into g
+                    select new AuthorStatistics()
+                    {
+                        AuthorName = g.Key,
+                        AvgPageNumber = g.Average(b => b.Pages),
+                        AvgPrice = g.Average(b => b.Price),
+                        AvgRating = g.Average(b => b.Rating),
+                    }).AsEnumerable();
         }
 
         public IEnumerable<string> CategoriesOfAuthor(int id)
         {
-            throw new NotImplementedException();
+            return (from b in this.repository.Read(id).Books
+                    orderby b.Category.CategoryName ascending
+                    select b.Category.CategoryName)
+                    .Distinct()
+                    .AsEnumerable();
         }
     }
 }
