@@ -34,7 +34,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public void Delete(int id)
         {
-            if(this.repository.ReadAll().Where(a => a.AuthorId == id) == null)
+            if(this.repository.ReadAll().FirstOrDefault(a => a.AuthorId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Author in the database identified by given id ({id})!");
             }
@@ -44,7 +44,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public Author Read(int id)
         {
-            if (this.repository.ReadAll().Where(a => a.AuthorId == id) == null)
+            if (this.repository.ReadAll().FirstOrDefault(a => a.AuthorId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Author in the database identified by given id ({id})!");
             }

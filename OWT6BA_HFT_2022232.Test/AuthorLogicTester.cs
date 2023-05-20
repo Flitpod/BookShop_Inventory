@@ -17,13 +17,14 @@ namespace OWT6BA_HFT_2022232.Test
     public class AuthorLogicTester
     {
         // members
-        IAuthorLogic authorLogic;
+        private IAuthorLogic authorLogic;
+        private Mock<IRepository<Author>> mockAuthorRepo;
 
         // setup with mock repository
         [SetUp]
         public void Init()
         {
-            var mockAuthorRepo = new Mock<IRepository<Author>>();
+            this.mockAuthorRepo = new Mock<IRepository<Author>>();
 
             // seeds
             Category c1 = new Category() {CategoryId = 1, CategoryName = "a" };
@@ -53,7 +54,50 @@ namespace OWT6BA_HFT_2022232.Test
         }
 
 
-        // NON-CRUD test
+        // CRUD tests
+        // Create tests
+        [Test]
+        public void AuthorLogic_Create_RepositoryCreateCall_Test()
+        {
+            // arrange 
+            Author author = new Author() { AuthorId = 3, AuthorName = "C" };
+
+            // act
+            this.authorLogic.Create(author);
+
+            // assert
+            this.mockAuthorRepo.Verify(ar => ar.Create(author), Times.Once);
+        }
+
+        [Test]
+        public void AuthorLogic_CreateThrowsExceptionEmptyString_RepositoryCreateNotCall_Test()
+        {
+            // arrange 
+            Author author = new Author() { AuthorId = 3, AuthorName = "" };
+
+            // asserts
+            Assert.Throws<Exception>(() => this.authorLogic.Create(author));
+            this.mockAuthorRepo.Verify(ar => ar.Create(author),Times.Never);
+        }
+
+
+        // Delete Test
+        [Test]
+        public void AuthorLogic_DeleteInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.authorLogic.Delete(3));
+        }
+
+        // Read Test
+        [Test]
+        public void AuthorLogic_ReadInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.authorLogic.Read(3));
+        }
+
+        // NON-CRUD tests
         [Test]
         public void AuthorLogic_GetStatistics_Test()
         {

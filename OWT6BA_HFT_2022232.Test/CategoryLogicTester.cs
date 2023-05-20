@@ -17,13 +17,14 @@ namespace OWT6BA_HFT_2022232.Test
     public class CategoryLogicTester
     {
         // members
-        ICategoryLogic categoryLogic;
+        private ICategoryLogic categoryLogic;
+        private Mock<IRepository<Category>> mockCategoryRepo;
 
         // setup with mock repository
         [SetUp]
         public void Init()
         {
-            var mockCategoryRepo = new Mock<IRepository<Category>>();
+            this.mockCategoryRepo = new Mock<IRepository<Category>>();
 
             // seeds
             Book b1 = new Book() { BookId = 1, ReleaseYear = 1901, Rating = 4.1, NumberOfReviews = 10 };
@@ -44,6 +45,51 @@ namespace OWT6BA_HFT_2022232.Test
             // CategoryLogic instancing
             this.categoryLogic = new CategoryLogic(mockCategoryRepo.Object);
         }
+
+
+        // CRUD tests
+        // Create tests
+        [Test]
+        public void BookLogic_Create_RepositoryCreateCall_Test()
+        {
+            // arrange 
+            Category category = new Category() { CategoryId = 3 };
+
+            // act
+            this.categoryLogic.Create(category);
+
+            // assert
+            this.mockCategoryRepo.Verify(ar => ar.Create(category), Times.Once);
+        }
+
+        [Test]
+        public void BookLogic_CreateThrowsExceptionEmptyString_RepositoryCreateNotCall_Test()
+        {
+            // arrange 
+            Category category = new Category() { CategoryId = 3, CategoryName = "" };
+
+            // asserts
+            Assert.Throws<Exception>(() => this.categoryLogic.Create(category));
+            this.mockCategoryRepo.Verify(ar => ar.Create(category), Times.Never);
+        }
+
+
+        // Delete Test
+        [Test]
+        public void BookLogic_DeleteInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.categoryLogic.Delete(3));
+        }
+
+        // Read Test
+        [Test]
+        public void BookLogic_ReadInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.categoryLogic.Read(3));
+        }
+
 
 
         // NON-CRUD test

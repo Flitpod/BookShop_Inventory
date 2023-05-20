@@ -33,7 +33,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public void Delete(int id)
         {
-            if (this.repository.ReadAll().Where(a => a.CategoryId == id) == null)
+            if (this.repository.ReadAll().FirstOrDefault(c => c.CategoryId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Category in the database identified by given id ({id})!");
             }
@@ -42,7 +42,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public Category Read(int id)
         {
-            if (this.repository.ReadAll().Where(a => a.CategoryId == id) == null)
+            if (this.repository.ReadAll().FirstOrDefault(c => c.CategoryId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Category in the database identified by given id ({id})!");
             }

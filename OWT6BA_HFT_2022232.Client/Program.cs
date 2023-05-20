@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OWT6BA_HFT_2022232.Logic.Classes;
+using OWT6BA_HFT_2022232.Logic.Interfaces;
 using OWT6BA_HFT_2022232.Models;
 using OWT6BA_HFT_2022232.Repository.Database;
 using OWT6BA_HFT_2022232.Repository.Interface;

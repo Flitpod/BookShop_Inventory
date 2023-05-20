@@ -17,13 +17,14 @@ namespace OWT6BA_HFT_2022232.Test
     public class BookLogicTester
     {
         // members
-        IBookLogic bookLogic;
+        private IBookLogic bookLogic;
+        private Mock<IRepository<Book>> mockBookRepo;
 
         // setup with mock repository
         [SetUp]
         public void Init()
         {
-            var mockBookRepo = new Mock<IRepository<Book>>();
+            this.mockBookRepo = new Mock<IRepository<Book>>();
 
             // seeds
             Author a1 = new Author() { AuthorId = 1, AuthorName = "A" }; 
@@ -49,6 +50,50 @@ namespace OWT6BA_HFT_2022232.Test
 
             // CategoryLogic instancing
             this.bookLogic = new BookLogic(mockBookRepo.Object);
+        }
+
+
+        // CRUD tests
+        // Create tests
+        [Test]
+        public void BookLogic_Create_RepositoryCreateCall_Test()
+        {
+            // arrange 
+            Book book = new Book() { BookId = 9 };
+
+            // act
+            this.bookLogic.Create(book);
+
+            // assert
+            this.mockBookRepo.Verify(ar => ar.Create(book), Times.Once);
+        }
+
+        [Test]
+        public void BookLogic_CreateThrowsExceptionEmptyString_RepositoryCreateNotCall_Test()
+        {
+            // arrange 
+            Book book = new Book() { BookId = 9 , Title = ""};
+
+            // asserts
+            Assert.Throws<Exception>(() => this.bookLogic.Create(book));
+            this.mockBookRepo.Verify(ar => ar.Create(book), Times.Never);
+        }
+
+
+        // Delete Test
+        [Test]
+        public void BookLogic_DeleteInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.bookLogic.Delete(10));
+        }
+
+        // Read Test
+        [Test]
+        public void BookLogic_ReadInvalidIdThrowsException_Test()
+        {
+            // assert
+            Assert.Throws<Exception>(() => this.bookLogic.Read(10));
         }
 
 
@@ -88,7 +133,7 @@ namespace OWT6BA_HFT_2022232.Test
             };
 
             // act 
-            var actual = this.bookLogic.GetStatisticsByYears().ToArray();
+            var actual = this.bookLogic.GetStatisticsByYears();
             
             // assert
             Assert.AreEqual(expected, actual);

@@ -35,7 +35,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public void Delete(int id)
         {
-            if (this.repository.ReadAll().Where(a => a.BookId == id) == null)
+            if (this.repository.ReadAll().FirstOrDefault(b => b.BookId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Book in the database identified by given id ({id})!");
             }
@@ -44,7 +44,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
 
         public Book Read(int id)
         {
-            if (this.repository.ReadAll().Where(a => a.BookId == id) == null)
+            if (this.repository.ReadAll().FirstOrDefault(b => b.BookId == id) == null)
             {
                 throw new Exception($"[EXCEPTION] No Book in the database identified by given id ({id})!");
             }
