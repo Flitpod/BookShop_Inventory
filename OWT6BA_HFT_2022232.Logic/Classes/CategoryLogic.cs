@@ -76,7 +76,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
                     {
                         CategoryName = g.Key,
                         NumberOfBooks = g.Count(),
-                        AvgRating = g.Average(b => b.Rating),
+                        AvgRating = Math.Round(g.Average(b => b.Rating),1),
                         SumNumberOfReviews = g.Sum(b => b.NumberOfReviews),
                     }).AsEnumerable();
         }

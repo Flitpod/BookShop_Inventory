@@ -76,8 +76,8 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
                     {
                         AuthorName = g.Key,
                         AvgPageNumber = g.Average(b => b.Pages),
-                        AvgPrice = g.Average(b => b.Price),
-                        AvgRating = g.Average(b => b.Rating),
+                        AvgPrice = Math.Round(g.Average(b => b.Price),1),
+                        AvgRating = Math.Round(g.Average(b => b.Rating),1),
                     }).AsEnumerable();
         }
 
