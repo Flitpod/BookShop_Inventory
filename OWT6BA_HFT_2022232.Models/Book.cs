@@ -67,6 +67,9 @@ namespace OWT6BA_HFT_2022232.Models
         {
             Book a = this;
             Book b = obj as Book;
+
+            if(b == null) return false;
+
             return  a.BookId == b.BookId &&
                     a.Title == b.Title &&
                     a.ReleaseYear == b.ReleaseYear &&
