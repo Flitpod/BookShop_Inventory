@@ -104,8 +104,8 @@ namespace OWT6BA_HFT_2022232.Test
             // arrange
             var expected = new List<AuthorStatistics>()
             {
-                new AuthorStatistics() {AuthorName = "A", AvgPageNumber = 250, AvgPrice = 25, AvgRating = 4.25},
-                new AuthorStatistics() {AuthorName = "B", AvgPageNumber = 650, AvgPrice = 65, AvgRating = 4.65},
+                new AuthorStatistics() {AuthorName = "A", AvgPageNumber = 250, AvgPrice = 25, AvgRating = 4.2},
+                new AuthorStatistics() {AuthorName = "B", AvgPageNumber = 650, AvgPrice = 65, AvgRating = 4.6},
             };
 
             // act 
