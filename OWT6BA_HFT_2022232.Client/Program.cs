@@ -17,7 +17,7 @@ namespace OWT6BA_HFT_2022232.Client
             #endregion
 
 
-            RestService rest = new RestService("http://localhost:6614/");
+            IRestService rest = new RestService("http://localhost:6614/");
 
             CrudService crud = new CrudService(rest);
             NonCrudService nonCrud = new NonCrudService(rest);
