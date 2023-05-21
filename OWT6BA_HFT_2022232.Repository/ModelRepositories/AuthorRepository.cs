@@ -28,7 +28,10 @@ namespace OWT6BA_HFT_2022232.Repository.ModelRepositories
             var old = Read(item.AuthorId);
             foreach (var prop in item.GetType().GetProperties())
             {
-                prop.SetValue(old, prop.GetValue(item));
+                if(prop.GetAccessors().FirstOrDefault(t => t.IsVirtual) == null)
+                {
+                    prop.SetValue(old, prop.GetValue(item));
+                }
             }
             dbContext.SaveChanges();
         }
