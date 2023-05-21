@@ -46,6 +46,10 @@ namespace OWT6BA_HFT_2022232.Client
             var authors = AuthorRepo.ReadAll().ToArray();
             var books = BookRepo.ReadAll().ToArray();
             var categories = CategoryRepo.ReadAll().ToArray();
+
+            //IBookLogic bookLogic = new BookLogic(BookRepo);
+
+            //var a = bookLogic.GetStatisticsByYears().ToArray();
             ;
         }
     }

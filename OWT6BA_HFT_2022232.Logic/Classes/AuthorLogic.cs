@@ -88,7 +88,7 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         /// <returns></returns>
         public IEnumerable<string> CategoriesOfAuthor(int id)
         {
-            return (from b in this.repository.Read(id).Books
+            return (from b in Read(id).Books
                     orderby b.Category.CategoryName ascending
                     select b.Category.CategoryName)
                     .Distinct()

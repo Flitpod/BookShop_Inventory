@@ -79,21 +79,23 @@ namespace OWT6BA_HFT_2022232.Logic.Classes
         }
 
         /// <summary>
-        /// Give back BookYearStatistics objects containing the year, NumberOfBooks, NumberOfCategories, NumberOfAuthors in the same year, if the actual year contains minimum 1 book
+        /// Give back BookYearStatistics objects containing the year, NumberOfBooks, NumberOfCategories, NumberOfAuthors in the same year, if the actual year contains minimum 1 book order by year ascending
         /// </summary>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable<BookYearStatistics> GetStatisticsByYears()
         {
-            return (from b in this.repository.ReadAll()
+            return (from b in this.repository.ReadAll().AsEnumerable() // AsEnumerable azért kell, mert csak a kliensen értékelhető ki a lekérdezés az összetettsége miatt, az Entity Framework futásidejű hibát dob. 
                     group b by b.ReleaseYear into g
                     select new BookYearStatistics()
                     {
                         Year = g.Key,
                         NumberOfBooks = g.Count(),
-                        NumberOfAuthors = g.GroupBy(b => b.Author.AuthorId).Count(),
+                        NumberOfAuthors = g.GroupBy(b => b.Author.AuthorName).Count(),
                         NumberOfCategories = g.GroupBy(b => b.Category.CategoryId).Count(),
-                    }).AsEnumerable();                             
+                    })
+                    .OrderBy(ys => ys.Year)
+                    .AsEnumerable();
         }
     }
 }
