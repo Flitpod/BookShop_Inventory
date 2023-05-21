@@ -61,7 +61,7 @@ namespace OWT6BA_HFT_2022232.Endpoint.Controllers
 
         // NON-CRUD API methods
         // GET: api/<BookController>
-        [HttpGet("{year}")]
+        [HttpGet]
         public IEnumerable<Book> BooksFromYear(int year)
         {
             return this.bookLogic.BooksFromYear(year);

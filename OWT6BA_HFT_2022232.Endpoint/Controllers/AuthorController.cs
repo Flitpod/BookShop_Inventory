@@ -69,7 +69,7 @@ namespace OWT6BA_HFT_2022232.Endpoint.Controllers
         }
 
         // GET: api/<AuthorController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public IEnumerable<string> CategoriesOfAuthor(int id)
         {
             return this.authorLogic.CategoriesOfAuthor(id);

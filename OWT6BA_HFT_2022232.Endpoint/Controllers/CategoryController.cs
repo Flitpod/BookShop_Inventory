@@ -61,7 +61,7 @@ namespace OWT6BA_HFT_2022232.Endpoint.Controllers
 
         // NON-CRUD API methods
         // GET: api/<CategoryController>
-        [HttpGet("{startYear}")]
+        [HttpGet]
         public IEnumerable<CategoryStatistics> GetStatisticsFromStartYear(int startYear)
         {
             return this.categoryLogic.GetStatisticsFromStartYear(startYear);
