@@ -32,8 +32,8 @@ namespace OWT6BA_HFT_2022232.Repository.ModelRepositories
                 {
                     prop.SetValue(old, prop.GetValue(item));
                 }
-                dbContext.SaveChanges();
             }
+            dbContext.SaveChanges();
         }
     }
 }

@@ -26,9 +26,12 @@ namespace OWT6BA_HFT_2022232.Repository.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
+                // string conn = "Server=tcp:bookdbfelhoserver.database.windows.net,1433;Initial Catalog=BookDBFelho;Persist Security Info=False;User ID=OWT6BA@stud.uni-obuda.hu;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";";
+                string conn = "Server=tcp:bookdbfelhoserver.database.windows.net,1433;Initial Catalog=BookDBFelho;Persist Security Info=False;User ID=OWT6BA@stud.uni-obuda.hu;Password=;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Password\";";
                 optionsBuilder
                     .UseLazyLoadingProxies()
-                    .UseInMemoryDatabase("BookDb");
+                    .UseSqlServer(conn);
+                    // .UseInMemoryDatabase("BookDb");
             }
         }
 
