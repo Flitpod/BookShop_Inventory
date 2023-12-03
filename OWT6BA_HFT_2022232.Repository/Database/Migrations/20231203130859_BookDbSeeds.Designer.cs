@@ -9,8 +9,8 @@ using OWT6BA_HFT_2022232.Repository.Database;
 namespace OWT6BA_HFT_2022232.Repository.Database.Migrations
 {
     [DbContext(typeof(BookDbContext))]
-    [Migration("20231203013217_BookDb_seeds")]
-    partial class BookDb_seeds
+    [Migration("20231203130859_BookDbSeeds")]
+    partial class BookDbSeeds
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

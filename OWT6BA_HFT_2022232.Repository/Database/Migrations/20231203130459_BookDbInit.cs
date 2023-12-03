@@ -2,7 +2,7 @@
 
 namespace OWT6BA_HFT_2022232.Repository.Database.Migrations
 {
-    public partial class BookDb_init : Migration
+    public partial class BookDbInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
